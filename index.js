@@ -4,6 +4,8 @@ const axios = require('axios');
 const { wrapper } = require('axios-cookiejar-support');
 const { CookieJar } = require('tough-cookie');
 const qs = require('qs');
+const dotenv = require('dotenv');
+dotenv.config();
 
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
@@ -14,8 +16,8 @@ const qs = require('qs');
   await page.goto('https://letterboxd.com/sign-in/');
 
   // Enter login credentials
-  await page.type('#field-username', 'INSERT_USERNAME');
-  await page.type('#field-password', 'INSERT_PASSWORD');
+  await page.type('#field-username', process.env.USERNAME);
+  await page.type('#field-password', process.env.PASSWORD);
 
   // Click login button
   await page.keyboard.press('Enter');
@@ -27,7 +29,7 @@ const qs = require('qs');
 
   // START: get favorite film ids
 
-  await page.goto('https://letterboxd.com/{INSERT_USERNAME}/likes/films/');
+  await page.goto(`https://letterboxd.com/${process.env.USERNAME}/likes/films/`);
 
   // Extract favorite film IDs
   const favoriteFilmIds = await page.evaluate(() => {
