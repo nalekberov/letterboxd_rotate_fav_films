@@ -64,15 +64,15 @@ dotenv.config();
       completeSettings: 'true',
       givenName: '',
       familyName : '',
-      emailAddress: 'nurlan.alekberoff@gmail.com',
-      location: 'Leipzig, Germany',
-      website: 'https://nurlan.alakbarov.org',
-      bio: 'My fav films are random liked ones rotated every night',
-      pronoun: 'He',
+      emailAddress: process.env.EMAIL,
+      location: process.env.LOCATION,
+      website: process.env.WEBSITE,
+      bio: process.env.BIO,
+      pronoun: process.env.PRONOUN,
       posterMode: 'All',
       commentPolicy: 'Anyone',
       privacyIncludeInPeopleSection: 'true',
-      showAdultContent: 'true',
+      showAdultContent: process.env.FLAG_SHOW_ADULT_CONTENT,
       password: ''
     }
 
